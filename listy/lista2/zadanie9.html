@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 9</title>
+    <style>
+        #wynik {
+            display: block;
+            margin: auto;
+            width: 80%;
+            min-height: 50px;
+            height: fit-content;
+            background-color: black;
+            text-align: center;
+            border: 5px solid grey;
+            color: white;
+            padding: 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: larger;
+        }
+
+        p {
+            margin: auto;
+            width: 80%;
+            border: 5px solid grey;
+            background-color: green;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: large;
+        }
+        #przycisk{
+            width: 80%;
+            margin: auto;
+            display: flex;
+            justify-content: center;
+            border: 5px solid grey;
+            background-color: yellow;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wynik">Wyniki</br></div></br>
+    <p>Po zatwierdzeniu działania klawiszem enter input wykonuje skrypt js który wpisane wyrażenie podaje jako argument
+        do funkcji eval().
+        Funkcja eval() natomiast zwraca wynik wpisanego wyrażenia i wypisuje go linię niżej dzięki znacznikowi br.
+        Przycisk wyczyść po kliknięciu (onclick) przenosi nas ponownie na naszą strone dzięki zmiennej location która
+        zawiera adres naszej strony (location=location)</p></br> 
+    <div id="przycisk">
+        <input onchange="document.getElementById('wynik').innerHTML+=this.value+'='+eval(this.value)+'</br>'">
+        <button onclick="location=location">Wyczyść</button>
+    </div>
+
+</body>
+
+</html>

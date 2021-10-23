@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 10</title>
+    <style>
+        input {
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <input>x<sup>2</sup>+<input>x+<input>=0
+    <hr>
+    <button onclick="solve()">Rozwiąż</button>
+    <div></div>
+    <script>
+        function solve() {
+            let inp = document.getElementsByTagName("input");
+            let a = +inp[0].value, b = +inp[1].value, c = +inp[2].value;
+            let delta = b * b - 4 * a * c;
+            if (delta < 0) {
+                document.getElementsByTagName("div")[0].innerHTML = "Brak rozwiązań";
+            }
+            else if (delta == 0) {
+                let x0 = -b / (2 * a);
+                document.getElementsByTagName("div")[0].innerHTML = "x0=" + x0;
+            }
+            else {
+                let x1 = (-b - Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b + Math.sqrt(delta)) / (2 * a);
+                document.getElementsByTagName("div")[0].innerHTML = "x1=" + x1 + "</br>x2=" + x2;
+            }
+        }
+    </script>
+    <br>
+    <hr>
+    <p>
+        let inp = document.getElementsByTagName("input"); //przypisujemy zmiennej inp wartości wszystkich pól tekstowych input </br>
+        <hr>
+        let a = +inp[0].value, b = +inp[1].value, c = +inp[2].value; //przypisujemy zmiennej a, b, c kolejne indeksy zmiennej inp która jest teraz tablicą złożoną z wartości pól input </br>
+        <hr>
+        let delta = b * b - 4 * a * c; //przypisujemy zmiennej delta wynik obliczenia delty na podstawie podanych zmiennych </br>
+        <hr>
+        if (delta < 0) { //jeżeli delta mniejsza niż 0 </br>
+        <hr>
+            document.getElementsByTagName("div")[0].innerHTML = "Brak rozwiązań"; //wstawiamy do pierwszego tagu div dokumentu komunikat o braku rozwiązań </br>
+        <hr>
+        }
+        else if (delta == 0) { //jeśli delta  to 0 </br>
+        <hr>
+            let x0 = -b / (2 * a); //przypisujemy zmiennej x0 jedyny pierwiastek równania</br>
+        <hr>
+            document.getElementsByTagName("div")[0].innerHTML = "x0=" + x0; //i wstawiamy go do pierwszego tagu div dokumentu </br>
+        <hr>
+        }
+        else { //w przypadku w którym żadna z powyższych warunków nie jest spełniony </br>
+        <hr>
+            let x1 = (-b - Math.sqrt(delta)) / (2 * a); //przypisujemy zmiennej x1 pierwszy pierwiastek równania </br>
+        <hr>
+            let x2 = (-b + Math.sqrt(delta)) / (2 * a); //przypisujemy zmiennej x2 drugi pierwiastek równania </br>
+        <hr>
+            document.getElementsByTagName("div")[0].innerHTML = "x1=" + x1 + "x2=" + x2; //I wstawiamy wynik do pierwszego tagu div dokument </br>
+        }
+    </p>
+</body>
+
+</html>

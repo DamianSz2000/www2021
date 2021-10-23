@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 7</title>
+</head>
+<body>
+    <p>Po zatwierdzeniu działania klawiszem enter input wykonuje skrypt js który wpisane wyrażenie podaje jako argument do funkcji eval()</p>
+    <p>Funkcja eval() natomiast zwraca wynik wpisanego wyrażenia i wypisuje go linię niżej dzięki znacznikowi br</p>
+    <p>Przycisk wyczyść po kliknięciu (onclick) przenosi nas ponownie na naszą strone dzięki zmiennej location która zawiera adres naszej strony (location=location)</p>
+    <input onchange="document.body.innerHTML+='<br>'+this.value+'='+eval(this.value)">
+    <button onclick="location=location">Wyczyść</button>
+</body>
+</html>
