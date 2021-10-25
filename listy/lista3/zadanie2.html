@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 2</title>
+    <style>
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td, tr{
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ramka">
+
+    </div>
+    <button onclick="wypisz(imiona)">ImionaA</button>
+    <button onclick="wypisz(liczby)">LiczbyA</button>
+    <button onclick="wypisz1(imiona)">ImionaB</button>
+    <button onclick="wypisz1(liczby)">LiczbyB</button>
+    <button onclick="wypisz2(imiona)">ImionaC</button>
+    <button onclick="wypisz2(liczby)">LiczbyC</button>
+    <button onclick="wypisz3(imiona)">ImionaD</button>
+    <button onclick="wypisz3(liczby)">LiczbyD</button>
+    <script>
+        var imiona = ["ola", "ala", "Ela"];
+        var liczby = [2, 3, 5, 7, 10, 12, 23];
+        function wypisz(tab){
+            var ramka=document.getElementById("ramka");
+            var s="";
+            for(let x = 0; x<tab.length; x++){
+                s += tab[x] + " ";
+            }
+            ramka.innerHTML=s
+        }
+        function wypisz1(tab){
+            var ramka=document.getElementById("ramka");
+            var s="<ul>";
+            for(let x = 0; x<tab.length; x++){
+                s += "<li>" + tab[x] + "</li>";
+            }
+            s += "</ul>"
+            ramka.innerHTML=s
+        }
+        function wypisz2(tab){
+            var ramka=document.getElementById("ramka");
+            var s="<table><tr>";
+            for(let x = 0; x<tab.length; x++){
+                s += "<td>" + tab[x] + "</td>";
+            }
+            s += "</tr></table>"
+            ramka.innerHTML=s
+        }
+        function wypisz3(tab){
+            var ramka=document.getElementById("ramka");
+            var s="<table>";
+            for(let x = 0; x<tab.length; x++){
+                s += "<tr><td>" + tab[x] + "</td></tr>";
+            }
+            s += "</table>"
+            ramka.innerHTML=s
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 3</title>
+</head>
+
+<body>
+    n=<input id="n" value=55 type="number">
+    <button onclick="witaj()"> Witaj</button>
+    <button onclick="liczby100()"> 1 .. 100</button>
+    <button onclick="liczbyN()"> 1 .. n</button>
+    <button onclick="wieloN()"> 100 wielokrotności N</button>
+    <button onclick="ukryj()"> Ukryj</button>
+    <button onclick="pokaz()"> Pokaż</button>
+    <script>
+        function witaj(){
+            var ramka = document.getElementById("ramka");
+            ramka.innerHTML = "";
+            ramka.innerHTML = "Dzień dobry";
+        }
+        function liczby100(){
+            ramka.innerHTML = "";
+            for(let x = 0; x < 100; x++){
+                ramka.innerHTML += x + " ";
+            }
+        }
+        function liczbyN(){
+            var n = document.getElementById("n").value;
+            ramka.innerHTML = "";
+            for(let x = 0; x <= n; x++){
+                ramka.innerHTML += x + " ";
+            }
+        }
+        function wieloN(){
+            var n = document.getElementById("n").value;
+            ramka.innerHTML = "";
+            for(let x = 1; x <= 100; x++){
+                ramka.innerHTML += n*x + " ";
+            }
+        }
+        function ukryj(){
+            ramka.style = "display: none;"
+        }
+        function pokaz(){
+            ramka.style = "display: block;"
+        }
+    </script>
+    <div id="ramka">
+
+    </div>
+</body>
+
+</html>
