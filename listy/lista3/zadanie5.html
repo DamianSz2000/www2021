@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 5</title>
+    <style>
+        p:nth-child(5n){
+            color: yellow;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <p>ein</p>
+    <p>zwei</p>
+    <p>drei</p>
+    <p>vier</p>
+    <p>fünf</p>
+    <p>sechs</p>
+    <p>sieben</p>
+    <p>acht</p>
+    <p>neun</p>
+    <p>zehn</p>
+    <p>elf</p>
+    <p>zwölf</p>
+    <p>dreizehn</p>
+    <p>vierzehn</p>
+    <p>fünfzehn</p>
+    <button onclick="przywroc()">OK</button>
+    <button onclick="cotrzeci()">Co trzeci paragraf tło różowe, tekst niebieski</button>
+    <button onclick="dodaj()">Dodaj 15 element od końca</button>
+    <button onclick="dodaj2()">Dodaj paragraf wskazujący numer paragrafu</button>
+    <div id="dodaj"></div>
+
+    <script>
+        function przywroc(){
+            let ptag = document.querySelectorAll('p');
+            for (let i = 0; i<ptag.length; i++){
+                ptag[i].style.color = "black";
+                ptag[i].style.background = "white";
+            }
+        }
+        function cotrzeci(){
+            let ptag = document.querySelectorAll('p');
+            for (let i = 2; i<ptag.length; i+=3){
+                ptag[i].style.color = "blue";
+                ptag[i].style.background = "pink";
+            }
+        }
+        function dodaj(){
+            let ptag = document.querySelectorAll('p');
+            let dlugosc = ptag.length;
+            document.getElementById("dodaj").innerHTML += "<p>"+ptag[dlugosc-15].innerHTML+"</p>";
+        }
+        function dodaj2(){
+            let ptag = document.querySelectorAll('p');
+            let dlugosc = ptag.length;
+            let numer = 0;
+            for (let i = 0; i<=ptag.length; i++){
+                numer++;
+            }
+            document.getElementById("dodaj").innerHTML += "<p>Numer tego paragrafu to: "+numer+"</p>";
+        }
+    </script>
+</body>
+
+</html>

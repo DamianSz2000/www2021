@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="utf-8">
+    <title>Ćwiczenie 6</title>
+    <style>
+        table {
+            text-align: center;
+            vertical-align: middle;
+            font-size: 20px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        table {
+            border-collapse: collapse
+        }
+
+        th {
+            background-color: #aaa;
+        }
+
+        td,
+        th {
+            width: 50px;
+            height: 50px;
+            border: 1px solid grey;
+        }
+
+        tr:nth-child(odd) td:nth-child(odd) {
+            background: #ddd
+        }
+
+        tr:nth-child(even) td:nth-child(even) {
+            background: #ddd
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        <tr>
+            <th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        </tr>
+        
+    </table>
+    <button onclick="mnozenie()">Mnożenie</button>
+    <button onclick="dodawanie()">Dodawanie</button>
+    <button onclick="modulo()">Modulo</button>
+    <button onclick="zwiekszanie()">Zwiększanie</button>
+    <button onclick="sumy()">Sumy</button>
+    <button onclick="parzyste()">Parzyste</button>
+    <button onclick="szachy()">Szachy</button>
+    <button onclick="gumkuj()">Gumkuj</button>
+    <button onclick="liczby()">Liczby</button>
+    <script>
+        var tab = document.getElementsByTagName('table')[0];
+        for (let i = 1; i <= 10; i++) {
+            tab.rows[0].cells[i].innerHTML = i;
+            tab.rows[i].cells[0].innerHTML = i;
+        }
+        function mnozenie() {
+            let tab = document.getElementsByTagName('table')[0];
+            tab.rows[0].cells[0].innerHTML = "*";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tab.rows[i].cells[j].innerHTML = i * j;
+                }
+            }
+        }
+        function dodawanie() {
+            let tab = document.getElementsByTagName('table')[0];
+            tab.rows[0].cells[0].innerHTML = "+";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tab.rows[i].cells[j].innerHTML = i + j;
+                }
+            }
+        }
+        function modulo() {
+            let tab = document.getElementsByTagName('table')[0];
+            tab.rows[0].cells[0].innerHTML = "%";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tab.rows[i].cells[j].innerHTML = i % j;
+                }
+            }
+        }
+        function zwiekszanie() {
+            let tab = document.getElementsByTagName('table')[0];
+            tab.rows[0].cells[0].innerHTML = "+1";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tab.rows[i].cells[j].innerHTML = parseInt(tab.rows[i].cells[j].innerHTML) + 1;
+                }
+            }
+        }
+        function sumy() {
+            let tab = document.getElementsByTagName('table')[0];
+            tab.rows[0].cells[0].innerHTML = "Sumy";
+            for (let j = 1; j <= 10; j++) {
+                let suma = 0
+                for (let i = 1; i <= 10; i++) {
+                    suma = suma + parseInt(tab.rows[i].cells[j].innerHTML);
+                    tab.rows[0].cells[j].innerHTML = suma;
+                }
+            }
+            for (let j = 1; j <= 10; j++) {
+                let suma = 0
+                for (let i = 1; i <= 10; i++) {
+                    suma = suma + parseInt(tab.rows[j].cells[i].innerHTML);
+                    tab.rows[j].cells[0].innerHTML = suma;
+                }
+            }
+        }
+        function parzyste() {
+            let tab = document.getElementsByTagName('table')[0];
+            tab.rows[0].cells[0].innerHTML = "";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    if (parseInt(tab.rows[i].cells[j].innerHTML) % 2 == 0) {
+                        tab.rows[i].cells[j].style.background = "green";
+                    }
+                    else {
+                        tab.rows[i].cells[j].style.background = "yellow";
+                    }
+                }
+            }
+        }
+        function szachy() {
+            tab.rows[0].cells[0].innerHTML = "";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tab.rows[i].cells[j].style.background = "";
+                }
+            }
+        }
+        function gumkuj() {
+            tab.rows[0].cells[0].innerHTML = "";
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    tab.rows[i].cells[j].innerHTML = "";
+                }
+            }
+        }
+        function liczby() {
+            tab.rows[0].cells[0].innerHTML = "";
+            let liczba = 0;
+            for (let i = 1; i <= 10; i++) {
+                for (let j = 1; j <= 10; j++) {
+                    liczba++;
+                    tab.rows[i].cells[j].innerHTML = liczba;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

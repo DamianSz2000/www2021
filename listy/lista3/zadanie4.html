@@ -5,24 +5,43 @@
     <meta charset="utf-8">
     <title>Ćwiczenie 4</title>
     <style>
-        #obraz{
+        button{
             position: absolute;
-            height: 100px;
-            left: 50%;
-            top: 50%;
         }
     </style>
-    <script>
-        var lewo = document.getElementById('obraz').style.left;
-    </script>
 </head>
 
 <body>
-    <img id="obraz" src="krajobraz.jpg"><br>
-    <button>Lewo</button>
-    <button>Prawo</button>
-    <button>Góra</button>
-    <button>Dół</button>
+    <img onclick="this.style.display='none'" id="obraz" src="krajobraz.jpg" style="position: absolute; height: 100px; left: calc(50% - 88.725px); top: calc(50% - 50px);"><br>
+    <button onclick="lewo()">lewo</button><br>
+    <button onclick="prawo()">prawo</button><br>
+    <button onclick="gora()">góra</button><br>
+    <button onclick="dol()">dół</button>
+
+
+    <script>
+        function lewo(){
+            let obrazek = document.getElementById('obraz');
+            let lewopoz = window.getComputedStyle(obrazek).getPropertyValue("left");
+            document.getElementById('obraz').style.left = ''+parseFloat(lewopoz)-10+"px";
+        }
+        function prawo(){
+            let obrazek = document.getElementById('obraz');
+            let prawopoz = window.getComputedStyle(obrazek).getPropertyValue("left");
+            document.getElementById('obraz').style.left = ''+(parseFloat(prawopoz)+10)+"px";
+        }
+        function gora(){
+            let obrazek = document.getElementById('obraz');
+            let gorapoz = window.getComputedStyle(obrazek).getPropertyValue("top");
+            document.getElementById('obraz').style.top = ''+parseFloat(gorapoz)-10+"px";
+        }
+        function dol(){
+            let obrazek = document.getElementById('obraz');
+            let dolpoz = window.getComputedStyle(obrazek).getPropertyValue("top");
+            document.getElementById('obraz').style.top = ''+(parseFloat(dolpoz)+10)+"px";
+        }
+        
+    </script>
 </body>
 
 </html>
