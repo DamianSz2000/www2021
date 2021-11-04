@@ -8,15 +8,30 @@
         button{
             position: absolute;
         }
+        #left{
+            top: 50%;
+        }
+        #right{
+            top: 50%;
+            right: 0%;
+        }
+        #up{
+            top: 0%;
+            left: 50%;
+        }
+        #down{
+            bottom: 0%;
+            left: 50%;
+        }
     </style>
 </head>
 
 <body>
     <img onclick="this.style.display='none'" id="obraz" src="krajobraz.jpg" style="position: absolute; height: 100px; left: calc(50% - 88.725px); top: calc(50% - 50px);"><br>
-    <button onclick="lewo()">lewo</button><br>
-    <button onclick="prawo()">prawo</button><br>
-    <button onclick="gora()">góra</button><br>
-    <button onclick="dol()">dół</button>
+    <button id="left" onclick="lewo()">lewo</button><br>
+    <button id="right" onclick="prawo()">prawo</button><br>
+    <button id="up" onclick="gora()">góra</button><br>
+    <button id="down" onclick="dol()">dół</button>
 
 
     <script>
