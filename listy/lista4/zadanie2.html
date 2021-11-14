@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        p{
+            vertical-align: middle;
+        }
+        p:nth-of-type(n+2){
+            display: none;
+        }
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="f(-1)"> << </button>
+    <p>Uniwersytet Wrocławski (UWr) – jeden z osiemnastu państwowych uniwersytetów klasycznych w Polsce z siedzibą we Wrocławiu, kształcący na kierunkach humanistycznych i ścisłych. Powstał pierwotnie w 1702 jako Academia Leopoldina, w 1811 połączoną z (dawnym) Uniwersytetem Viadrina przeniesionym z Frankfurtu nad Odrą, a w 1945 został przekształcony w polski uniwersytet. Uczelnia swoimi tradycjami odwołuje się do niemieckich uczelni wrocławskich i tradycji Uniwersytetu Jana Kazimierza we Lwowie[2], założonego w 1661. Jest najstarszą uczelnią wyższą we Wrocławiu, na której studiuje blisko 23,5 tysiąca studentów[3]. </p>
+    <p>Kształci studentów na studiach stacjonarnych, niestacjonarnych oraz wieczorowych. Uniwersytet Wrocławski jest uczelnią interdyscyplinarną kształcącą zarówno w zakresie nauk ścisłych, jak i humanistycznych. W jego ramach znajduje się 10 wydziałów i jednostki ogólnouczelniane[4]. </p>
+    <p>Aktualnie (30 listopada 2018) zatrudnionych jest 1959 nauczycieli akademickich (z czego 164 na stanowisku profesora zwyczajnego, 288 na stanowisku profesora nadzwyczajnego, 1120 na stanowisku adiunkta, 126 na stanowisku asystenta, 6 na stanowisku docenta, 215 na stanowisku starszego wykładowcy i wykładowcy, 24 na stanowisku lektora oraz 16 bibliotekarzy dyplomowanych). Pod względem uzyskanych stopni naukowych na uczelni pracuje: 216 profesorów, 361 doktorów habilitowanych i 1017 doktorów. Uniwersytet ponadto współpracuje z emerytowanymi profesorami, których autorytet wspiera zarówno proces dydaktyczny, jak i przede wszystkim wymianę międzynarodową[3]. </p>
+    <p>Według stanu na 2017 rok na uczelni studiowało łącznie 25 549 studentów, w tym 18 576 na studiach stacjonarnych, 5597 na studiach niestacjonarnych, 1376 obcokrajowców oraz 1406 doktorantów[3].</p>
+    <p>Według webometrycznego rankingu uniwersytetów świata ze stycznia 2015, pokazującego zaangażowanie instytucji akademickich w istnienie w sieci, uczelnia zajmuje 4. miejsce w Polsce wśród uniwersytetów, a na świecie 640. pośród wszystkich typów uczelni[5]. </p>
+    <button onclick="f(1)"> >> </button>
+    <button onclick="f(1)"> Start </button>
+    <button onclick="f(1)"> Stop </button>
+    <script>
+        var play = 1;
+        var i = 0;
+        var p = document.getElementsByTagName("p");
+        function f(x){
+            i += x;
+            console.log(i);
+            if(i == p.length){
+                i = 0;
+                p[p.length-1].style.display = "none";
+                p[i].style.display = "inline";
+            }
+            else if(i == -1){
+                i = p.length-1;
+                p[0].style.display = "none";
+                p[i].style.display = "inline";
+            }
+            else{
+                p[i-1].style.display = "none";
+                p[i].style.display = "inline";
+            }
+        }
+        function start(){
+            setInterval(function next(){
+                f(1);
+            }, 1000);
+        }
+        function stop(){
+            setInterval(function next(){
+                f(1);
+            }, 100000);
+        }
+    </script>
+</body>
+
+</html>

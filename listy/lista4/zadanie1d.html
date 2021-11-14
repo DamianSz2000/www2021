@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        img{
+            vertical-align: middle;
+            height: 400px;
+        }
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="f(-1)"> << </button>
+    <img src="img/a0.jpg">
+    <img src="img/a1.jpg">
+    <img src="img/a2.jpg">
+    <img src="img/a3.jpg">
+    <img src="img/a4.jpg">
+    <img src="img/a5.jpg">
+    <img src="img/a6.jpg">
+    <img src="img/a7.jpg">
+    <img src="img/a8.jpg">
+    <img src="img/a9.jpg">
+    <button onclick="f(1)"> >> </button>
+    <script>
+        var i = 0;
+        var img = document.getElementsByTagName("img");
+        for(let j = 1; j < img.length; j++){
+                img[j].style.display = "none";
+            }
+        function f(x){
+            i += x;
+            if(i == 10){
+                i = 0;
+                img[9].style.display = "none";
+                img[i].style.display = "inline";
+            }
+            else if(i == -1){
+                i = 9;
+                img[0].style.display = "none";
+                img[i].style.display = "inline";
+            }
+            else{
+                img[i-1].style.display = "none";
+                img[i].style.display = "inline";
+            }
+        }
+        setInterval(function next(){
+            f(1);
+        }, 1000);
+    </script>
+</body>
+
+</html>

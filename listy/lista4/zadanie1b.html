@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        img{
+            vertical-align: middle;
+            height: 400px;
+        }
+        body{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="f(-1)"> << </button>
+    <img src="img/a0.jpg">
+    <button onclick="f(1)"> >> </button>
+    <script>
+        var i = 0;
+        var adr = ["https://i.ibb.co/BLBvXPZ/a0.jpg", "https://i.ibb.co/X3XJF0s/a1.webp", "https://i.ibb.co/P1fyRKt/a2.jpg", "https://i.ibb.co/9g78HwQ/a3.jpg", "https://i.ibb.co/s9p4CpV/a4.jpg", "https://i.ibb.co/bbJR1Ds/a5.jpg", "https://i.ibb.co/4dVF5Kz/a6.jpg", "https://i.ibb.co/khxT8Z8/a7.webp", "https://i.ibb.co/72j2pms/a8.webp","https://i.ibb.co/M67bddM/a9.webp","https://www.dekowizja.pl/img2/700/wf980/naklejka-cudowny-krajobraz-z-wodospadami.jpg", "https://i.wpimg.pl/O/1920x0/m.fotoblogia.pl/zrzut-ekranu-2016-12-08--29304a5.png"]
+        var img = document.getElementsByTagName("img")[0];
+        function f(x){
+            i += x;
+            console.log(i);
+            img.src=adr[i];
+            if(i == adr.length){
+                i = 0;
+                img.src=adr[i];
+            }
+            else if(i == adr.length - (adr.length+1)){
+                i = adr.length-1;
+                img.src=adr[i];
+            }
+        }
+    </script>
+</body>
+
+</html>
