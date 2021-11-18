@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="clock"></h1>
+
+
+    <script>
+        timer = setInterval(getcurrenttime, 1000)
+        function getcurrenttime(){
+            const d = new Date();
+            document.getElementById("clock").innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+        }
+    </script>
+
+</body>
+
+</html>

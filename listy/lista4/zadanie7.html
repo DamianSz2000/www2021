@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<head>
+    <style>
+        td{
+            border: 1px solid black;
+            width: 80px;
+            height: 80px;
+            border-collapse: collapse;
+        }
+        #red{
+            background-color: red;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+        #green{
+            background-color: green;
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        Punkty red:green
+        <h1 id="wynik"></h1>
+        <button onclick="newgame()">Nowa gra</button>
+    </table>
+    <script>
+        function newgame(){
+            divs = document.querySelectorAll("div");
+            divs[0].remove();
+            var nrred = Math.floor(Math.random() * (counttd - 0)) + 0;
+            var nrgreen = Math.floor(Math.random() * (counttd - 0)) + 0;
+            tds[nrred].innerHTML = "<div id='red'></div>";
+            tds[nrgreen].innerHTML = "<div id='green'></div>";
+            var red = tds[nrred];
+            var green = tds[nrgreen];
+            timer = setInterval(move, 100);
+        }
+        var counttd = document.querySelectorAll("td").length;
+        var tds = document.querySelectorAll("td");
+        var counter = 0;
+        var nrred = Math.floor(Math.random() * (counttd - 0)) + 0;
+        var nrgreen = Math.floor(Math.random() * (counttd - 0)) + 0;
+        tds[nrred].innerHTML = "<div id='red'></div>";
+        tds[nrgreen].innerHTML = "<div id='green'></div>";
+        var red = tds[nrred];
+        var green = tds[nrgreen];
+        var rpoints = 0;
+        var gpoints = 0;
+        for(i=0;i<100;i++)  {
+            tds[i].nr=i;
+        }
+        function move(){
+            
+            var j=Math.floor(Math.random()*8);
+            var k=Math.floor(Math.random()*8);
+            console.log(j);
+               switch(j){
+                    case 0:
+                        if((nrred+1)%10<9){
+                            red.innerHTML = "";
+                            if((nrred+1)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred+1].innerHTML = "<div id='red'></div>";
+                            nrred += 1;
+                            red = tds[nrred];
+                        }
+                        break;
+                    case 1:
+                        if((nrred-1)%10>0){
+                            red.innerHTML = "";
+                            if((nrred-1)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred-1].innerHTML = "<div id='red'></div>";
+                            nrred -= 1;
+                            red = tds[nrred];
+                        }
+                        break;
+                    case 2:
+                        if((nrred-10)>=0){
+                            red.innerHTML = "";
+                            if((nrred-10)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred-10].innerHTML = "<div id='red'></div>";
+                            nrred -= 10;
+                            red = tds[nrred];
+                        }
+                        break;
+                    case 3:
+                        if((nrred+10)<100){
+                            red.innerHTML = "";
+                            if((nrred+10)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred+10].innerHTML = "<div id='red'></div>";
+                            nrred += 10;
+                            red = tds[nrred];
+                        }
+                        break;
+
+
+                    case 4:
+                        if((nrred+9)<100 && (nrred+9)%10>0){
+                            red.innerHTML = "";
+                            if((nrred+9)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred+9].innerHTML = "<div id='red'></div>";
+                            nrred += 9;
+                            red = tds[nrred];
+                        }
+                        break;
+                    case 5:
+                        if((nrred+11)<100 && (nrred+11)%10<9){
+                            red.innerHTML = "";
+                            if((nrred+11)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred+11].innerHTML = "<div id='red'></div>";
+                            nrred += 11;
+                            red = tds[nrred];
+                        }
+                        break;
+                    case 6:
+                        if((nrred-9)>=0 && (nrred-9)%10<9){
+                            red.innerHTML = "";
+                            if((nrred-9)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred-9].innerHTML = "<div id='red'></div>";
+                            nrred -= 9;
+                            red = tds[nrred];
+                        }
+                        break;
+                    case 7:
+                        if((nrred-11)>=0 && (nrred-11)%10>0){
+                            red.innerHTML = "";
+                            if((nrred-11)==nrgreen){
+                                rpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrred-11].innerHTML = "<div id='red'></div>";
+                            nrred -= 11;
+                            red = tds[nrred];
+                        }
+                        break;
+               }
+               switch(k){
+                   case 0:
+                        if((nrgreen+1)%10<9){
+                            green.innerHTML = "";
+                            if((nrgreen+1)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen+1].innerHTML = "<div id='green'></div>";
+                            nrgreen += 1;
+                            green = tds[nrgreen];
+                        }
+                        break;
+                    case 1:
+                        if((nrgreen-1)%10>0){
+                            green.innerHTML = "";
+                            if((nrgreen-1)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen-1].innerHTML = "<div id='green'></div>";
+                            nrgreen -= 1;
+                            green = tds[nrgreen];
+                        }
+                        break;
+                    case 2:
+                        if((nrgreen-10)>=0){
+                            green.innerHTML = "";
+                            if((nrgreen-10)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen-10].innerHTML = "<div id='green'></div>";
+                            nrgreen -= 10;
+                            green = tds[nrgreen];
+                        }
+                        break;
+                    case 3:
+                        if((nrgreen+10)<100){
+                            green.innerHTML = "";
+                            if((nrgreen+10)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen+10].innerHTML = "<div id='green'></div>";
+                            nrgreen += 10;
+                            green = tds[nrgreen];
+                        }
+                        break;
+
+
+                    case 4:
+                        if((nrgreen+9)<100 && (nrgreen+9)%10>0){
+                            green.innerHTML = "";
+                            if((nrgreen+9)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen+9].innerHTML = "<div id='green'></div>";
+                            nrgreen += 9;
+                            green = tds[nrgreen];
+                        }
+                        break;
+                    case 5:
+                        if((nrgreen+11)<100 && (nrgreen+11)%10<9){
+                            green.innerHTML = "";
+                            if((nrgreen+11)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen+11].innerHTML = "<div id='green'></div>";
+                            nrgreen += 11;
+                            green = tds[nrgreen];
+                        }
+                        break;
+                    case 6:
+                        if((nrgreen-9)>=0 && (nrgreen-9)%10<9){
+                            green.innerHTML = "";
+                            if((nrgreen-9)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen-9].innerHTML = "<div id='green'></div>";
+                            nrgreen -= 9;
+                            green = tds[nrgreen];
+                        }
+                        break;
+                    case 7:
+                        if((nrgreen-11)>=0 && (nrgreen-11)%10>0){
+                            green.innerHTML = "";
+                            if((nrgreen-11)==nrred){
+                                gpoints+=1;
+                                document.getElementById('wynik').innerHTML = rpoints + ":" + gpoints;
+                                clearInterval(timer);
+                            }
+                            tds[nrgreen-11].innerHTML = "<div id='green'></div>";
+                            nrgreen -= 11;
+                            green = tds[nrgreen];
+                        }
+                        break;
+               }
+            return nrred, nrgreen;
+        }
+        timer = setInterval(move, 100);
+        
+    </script>
+</body>
+</html>

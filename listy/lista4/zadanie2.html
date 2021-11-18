@@ -22,8 +22,8 @@
     <p>Według stanu na 2017 rok na uczelni studiowało łącznie 25 549 studentów, w tym 18 576 na studiach stacjonarnych, 5597 na studiach niestacjonarnych, 1376 obcokrajowców oraz 1406 doktorantów[3].</p>
     <p>Według webometrycznego rankingu uniwersytetów świata ze stycznia 2015, pokazującego zaangażowanie instytucji akademickich w istnienie w sieci, uczelnia zajmuje 4. miejsce w Polsce wśród uniwersytetów, a na świecie 640. pośród wszystkich typów uczelni[5]. </p>
     <button onclick="f(1)"> >> </button>
-    <button onclick="f(1)"> Start </button>
-    <button onclick="f(1)"> Stop </button>
+    <button onclick="start()"> Start </button>
+    <button onclick="stop()"> Stop </button>
     <script>
         var play = 1;
         var i = 0;
@@ -47,16 +47,13 @@
             }
         }
         function start(){
-            setInterval(function next(){
-                f(1);
-            }, 1000);
+            interval = setInterval(f,12500,1)
         }
         function stop(){
-            setInterval(function next(){
-                f(1);
-            }, 100000);
+            clearInterval(interval)
         }
     </script>
 </body>
 
 </html>
+

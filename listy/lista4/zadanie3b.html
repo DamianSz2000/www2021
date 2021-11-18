@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        div{
+            width: 10px;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: 50% 100%;
+        }
+        div:nth-of-type(1){
+            height: 200px;
+            background-color: black;
+        }
+        div:nth-of-type(2){
+            height: 300px;
+            background-color: black;
+        }
+        div:nth-of-type(3){
+            width: 5px;
+            height: 310px;
+            background-color: red;
+        }
+        img{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="h"></div>
+    <div id="m"></div>
+    <div id="s"></div>
+    <img src="img/clock.png">
+    <script>
+        timer = setInterval(clock, 1000)
+        function clock(){
+            const d = new Date();
+            var h = d.getHours();
+            var m = d.getMinutes();
+            var s = d.getSeconds();
+            var kath = ((h+m/60)/12)*360;
+            var katm = ((m+s/60)/60)*360;
+            var kats = (s/60)*360;
+            document.getElementById("h").style.transform="rotate("+kath+"deg)"
+            document.getElementById("m").style.transform="rotate("+katm+"deg)"
+            document.getElementById("s").style.transform="rotate("+kats+"deg)"
+        }
+    </script>
+
+</body>
+
+</html>

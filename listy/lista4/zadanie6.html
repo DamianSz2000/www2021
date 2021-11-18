@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+<style>
+    #ramka {height:700px;width:700px; border:1px solid grey;margin:auto;position:relative}
+    b {display:block;height:10px;width:10px;position:absolute;text-align:center;}
+    h1,div {text-align:center;margin:10px}
+    img{width: 25px;}
+</style>
+</head>
+<body>
+
+</body>
+
+<h1>Samoloty</h1>
+<div id='ramka'>
+	<script>
+	for(let i=0;i<10;i++)
+		document.write("<b><img src='img/plane.png'></b>");
+	</script>	
+</div>
+
+<div>
+    <button onclick="run=false"> Stop </button>
+    <button onclick="run=true;step();var t = setInterval(counter, 1000)"> Start </button>
+    <button onclick="newgame()">Nowa gra</button>
+    <button onclick="poziom1()">Poziom1</button>
+    <button onclick="poziom2()">Poziom2</button>
+    <button onclick="poziom3()">Poziom3</button>
+</div>
+Ilosc samolotow:
+<p id="ilosc"></p>
+
+
+<script>
+    var iloscobiekt = parseInt(document.querySelectorAll("b").length);
+        document.getElementById("ilosc").innerHTML = iloscobiekt;
+        function newgame(){
+            location.reload();
+        }
+        difficulty = 20;
+        function poziom1(){
+            difficulty = 10;
+            document.getElementById('ramka').innerHTML = "";
+            for(let i=0;i<15;i++)
+		        document.getElementById("ramka").innerHTML += ("<b><img src='img/plane.png'></b>");
+            var balls=document.getElementsByTagName('B');
+            for(ball of balls){
+                ball.style.display = 'block';
+                ball.x=Math.random()*690;
+                ball.y=Math.random()*690;
+
+                ball.vx=Math.random()*20-10;
+                ball.vy=Math.random()*20-10;
+                
+                ball.style.left=ball.x+"px";
+                ball.style.top =ball.y+"px";
+                var test = Math.atan2(ball.vy,ball.vx);
+                ball.style.transform="rotate("+test+"rad)";
+                
+                ball.onmousedown=znika;
+            }
+            iloscobiekt = parseInt(document.querySelectorAll("b").length);
+            document.getElementById("ilosc").innerHTML = iloscobiekt;
+        }
+        function poziom2(){
+            document.getElementById('ramka').innerHTML = "";
+            difficulty = 5;
+            for(let i=0;i<25;i++)
+		        document.getElementById("ramka").innerHTML += ("<b><img src='img/plane.png'></b>");
+            var balls=document.getElementsByTagName('B');
+            for(ball of balls){
+                ball.style.display = 'block';
+                ball.x=Math.random()*690;
+                ball.y=Math.random()*690;
+
+                ball.vx=Math.random()*20-10;
+                ball.vy=Math.random()*20-10;
+                
+                ball.style.left=ball.x+"px";
+                ball.style.top =ball.y+"px";
+                var test = Math.atan2(ball.vy,ball.vx);
+                ball.style.transform="rotate("+test+"rad)";
+                
+                ball.onmousedown=znika;
+            }
+            iloscobiekt = parseInt(document.querySelectorAll("b").length);
+            document.getElementById("ilosc").innerHTML = iloscobiekt;
+        }
+        function poziom3(){
+            document.getElementById('ramka').innerHTML = "";
+            difficulty = 1;
+            for(let i=0;i<45;i++)
+		        document.getElementById("ramka").innerHTML += ("<b><img src='img/plane.png'></b>");
+            var balls=document.getElementsByTagName('B');
+            for(ball of balls){
+                ball.style.display = 'block';
+                ball.x=Math.random()*690;
+                ball.y=Math.random()*690;
+
+                ball.vx=Math.random()*20-10;
+                ball.vy=Math.random()*20-10;
+                
+                ball.style.left=ball.x+"px";
+                ball.style.top =ball.y+"px";
+                var test = Math.atan2(ball.vy,ball.vx);
+                ball.style.transform="rotate("+test+"rad)";
+                
+                ball.onmousedown=znika;
+            }
+            iloscobiekt = parseInt(document.querySelectorAll("b").length);
+            document.getElementById("ilosc").innerHTML = iloscobiekt;
+        }
+        var balls=document.getElementsByTagName('B');
+        var run=false;
+        for(ball of balls)
+        {
+            ball.x=Math.random()*690;
+            ball.y=Math.random()*690;
+
+            ball.vx=Math.random()*20-10;
+            ball.vy=Math.random()*20-10;
+            
+            ball.style.left=ball.x+"px";
+            ball.style.top =ball.y+"px";
+            var test = Math.atan2(ball.vy,ball.vx);
+            ball.style.transform="rotate("+test+"rad)";
+            
+            ball.onmousedown=znika;
+        }
+    var countseconds = 0;
+    function znika(){
+        iloscobiekt -= 1;
+        document.getElementById("ilosc").innerHTML = iloscobiekt;
+        this.style.display = 'none';
+        if (iloscobiekt == 0){
+            document.getElementById("ilosc").innerHTML = "Mission completed in " + countseconds + " seconds";
+            clearInterval(t);
+        }
+    }
+    function step()
+    {
+        for(let ball of balls)
+        {
+            ball.x+=ball.vx;
+            ball.y+=ball.vy;
+            
+            
+            if(ball.x>690 || ball.x<0)  ball.vx*=-1;
+            if(ball.y>690 || ball.y<0)  ball.vy*=-1;
+            
+            ball.style.left=ball.x+"px";
+            ball.style.top =ball.y+"px";
+            var test2 = (Math.atan2(ball.vy,ball.vx))+0.785398163;
+            ball.style.transform="rotate("+test2+"rad)";
+        }
+        
+        if(run)
+            setTimeout(step,difficulty);
+    }
+    function stop()
+    {
+        this.vx=0;
+        this.vy=0;
+    }
+    function counter(){
+        countseconds += 1;
+    }
+</script>
+
+</html>

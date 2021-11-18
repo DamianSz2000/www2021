@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<head>
+    <style>
+        input{
+            width: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td rowspan=2 style="font-size:3em">{</td>
+            <td><input>x+<input>y=<input></td>
+        </tr>
+        <tr>
+            <td><input>x+<input>y=<input></td>
+        </tr>
+    </table><button onclick="solve()">Rozwiąż</button>
+    <script>
+        function solve(){
+            var inputs = document.querySelectorAll("input");
+            x1 = inputs[0].value;
+            x2 = inputs[3].value;
+            y1 = inputs[1].value;
+            y2 = inputs[4].value;
+            v1 = inputs[2].value;
+            v2 = inputs[5].value;
+            w = (x1*y2) - (y1*x2);
+            wx = (v1*y2) - (v2*y1);
+            wy = (x1*v2) - (x2*v1);
+            x = wx/w;
+            y = wy/w;
+            if(w != 0){
+                document.getElementById("wynik").innerHTML = "x: " + x + " y: " + y;
+            }
+            else if(w == 0 && (wx != 0 || wy != 0)){
+                document.getElementById("wynik").innerHTML = "Brak rozwiązań";
+            }
+            else if(w == 0 && wx == 0 && wy == 0){
+                document.getElementById("wynik").innerHTML = "Nieskończenie wiele rozwiązań";
+            }
+        }
+    </script>
+    <div id="wynik"></div>
+
+</body>
+
+</html>
