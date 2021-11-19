@@ -1,0 +1,59 @@
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div id="lista"></div>
+    <button onclick="wszyscy()">Wszyscy</button>
+    <button onclick="pokaz('fizyka')">Fizyka</button>
+    <button onclick="pokaz('chemia')">Chemia</button>
+    <button onclick="pokaz('informatyka')">Informatyka</button>
+    <button onclick="pokaz('matematyka')">Matematyka</button>
+    <script>
+        var student = [{ imie: "Ola", nazwisko: "Lis", kierunek: "fizyka", wzrost: 170 },
+        { imie: "Ala", nazwisko: "Góral", kierunek: "informatyka", wzrost: 165 },
+        { imie: "Jan", nazwisko: "Nowak", kierunek: "fizyka", wzrost: 180 },
+        { imie: "Maciek", nazwisko: "Lis", kierunek: "informatyka", wzrost: 170 },
+        { imie: "Kacper", nazwisko: "Góral", kierunek: "chemia", wzrost: 165 },
+        { imie: "Piotr", nazwisko: "Nowak", kierunek: "fizyka", wzrost: 180 },
+        { imie: "Ewelina", nazwisko: "Lis", kierunek: "matematyka", wzrost: 170 },
+        { imie: "Jakub", nazwisko: "Góral", kierunek: "chemia", wzrost: 165 },
+        { imie: "Michał", nazwisko: "Nowak", kierunek: "fizyka", wzrost: 180 },
+        { imie: "Kacper", nazwisko: "Lis", kierunek: "fizyka", wzrost: 170 },
+        { imie: "Bartłomiej", nazwisko: "Góral", kierunek: "matematyka", wzrost: 165 },
+        { imie: "Wojciech", nazwisko: "Nowak", kierunek: "fizyka", wzrost: 180 }];
+
+        function wszyscy() {
+            var lista = document.getElementById("lista");
+            var s = '';
+            lista.innerHTML += "<h2>Studenci</h2>";
+            for(let i = 0; i<student.length; i++){
+                if(student[i].kierunek == "fizyka"){var f = "green"}
+                if(student[i].kierunek == "informatyka"){var f = "red"}
+                if(student[i].kierunek == "chemia"){var f = "yellow"}
+                if(student[i].kierunek == "matematyka"){var f = "blue"}
+                s += "<li style='width: "+ student[i].wzrost*1.5 +";background-color: "+ f +";'>" + student[i].imie + " " + student[i].nazwisko + " (" + student[i].kierunek + ") " + "</li>"; 
+            }
+            lista.innerHTML += "<ol>" + s + "</ol>";
+        }
+        function pokaz(kierunek1){
+            lista.innerHTML = "";
+            lista.innerHTML += "<h2>" + kierunek1 + "</h2>";
+            var s = "";
+            for(let i = 0; i<student.length; i++){
+                if(student[i].kierunek == kierunek1){
+                    if(student[i].kierunek == "fizyka"){var f = "green"}
+                    if(student[i].kierunek == "informatyka"){var f = "red"}
+                    if(student[i].kierunek == "chemia"){var f = "yellow"}
+                    if(student[i].kierunek == "matematyka"){var f = "blue"}
+                    s += "<li style='width: "+ student[i].wzrost*1.5 +";background-color: "+ f +";'>" + student[i].imie + " " + student[i].nazwisko + " (" + student[i].kierunek + ") " + "</li>"; 
+                }
+            }
+            lista.innerHTML += "<ol>" + s + "</ol>";
+        }
+    </script>
+</body>
+
+</html>
