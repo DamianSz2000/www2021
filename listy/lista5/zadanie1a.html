@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        .menu1 a {
+            font-size: 20px
+        }
+
+        .menu1 a {
+            text-decoration: none;
+        }
+
+        .menu1 a {
+            font-family: arial;
+            display: block;
+            background: #eee;
+            padding: 4px 20px;
+            margin: 2px;
+        }
+
+        .menu1 li li a {
+            color: black
+        }
+
+        .menu1 li:hover>a {
+            background: #aaa;
+        }
+
+        .menu1>li {
+            display: table-cell;
+            padding: 0;
+            border: 1px solid grey
+        }
+
+        .menu1>li>a {
+            background: #678;
+            color: white;
+            margin: 2px;
+        }
+
+        .menu1>li:hover>a {
+            background: #456;
+        }
+
+        .menu1 ul {
+            list-style-type: none
+        }
+
+        .menu1 ul {
+            padding: 0
+        }
+
+        .menu1 li ul {
+            position: absolute;
+            border: 1px solid grey;
+            background: #eee
+        }
+
+        .menu1 li ul {
+            display: none
+        }
+
+        .menu1 li:hover ul {
+            display: block
+        }
+
+        .menu1>li {
+            display: table-cell;
+            padding: 0;
+            border: none
+        }
+    </style>
+</head>
+<html>
+
+<body>
+    <ul class="menu1">
+        <li><a href=#>Ludzie</a>
+            <ul>
+                <li><a href=#>Einstein</a></li>
+                <li><a href=#>Feynman</a></li>
+                <li><a href=#>Chopin</a></li>
+            </ul>
+        </li>
+        <li><a href=#>Figury</a>
+            <ul>
+                <li><a href=#>Kwadrat</a></li>
+                <li><a href=#>Koło</a></li>
+                <li><a href=#>Trójkąt</a></li>
+            </ul>
+        </li>
+        <li><a href=#>Miasta</a>
+            <ul>
+                <li><a href=#>Wrocław</a></li>
+                <li><a href=#>Kraków</a></li>
+                <li><a href=#>Poznań</a></li>
+            </ul>
+        </li>
+        <li><a href=#>Ryby</a>
+            <ul>
+                <li><a href=#>Dorsz</a></li>
+                <li><a href=#>Śledź</a></li>
+                <li><a
+                        href=https://www.google.com/search?q=sum&safe=off&sxsrf=ACYBGNStBx1XifrjSJjkVSxcuw7howkHZg:1571902401513&tbm=isch&source=iu&ictx=1&fir=_849prHuMrJANM%253A%252C2OmVrjYk1nysHM%252C_&vet=1&usg=AI4_-kS3HK_RsvRYl_JowtTnW4S7-zKw5w&sa=X&ved=2ahUKEwiV143isLTlAhXGi1wKHcNMBdwQ9QEwAXoECAgQBg#imgrc=u5FSx6uzgHzDmM:&vet=1>Sum</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <dl>
+        <dt>.menu1 a {font-size: 20px}</dt>
+        <dd>Elementy a wewnątrz elementu o klasie .menu1 mają czcionkę rozmiaru 20px</dd>
+        <dt>.menu1 a {text-decoration:none;}</dt>
+        <dd>Elementy a wewnątrz elementu o klasie .menu1 mają usuniętą dekorację tekstu np. podkreślenie w tym przypadku
+        </dd>
+        <dt>.menu1 a {font-family: arial;display:block;background:#eee;padding:4px 20px;margin:2px;}</dt>
+        <dd>Elementy a wewnątrz elementu o klasie .menu1 mają krój czcionki arial, wyświetlają się jako blok; mają tło
+            koloru białego(#eee), margines wewnętrzny górny 4px i prawy 20px, margines zewnętrzny 2px</dd>
+        <dt>.menu1 li li a {color:black}</dt>
+        <dd>Elementy a wewnątrz li wewnątrz li wewnątrz elementu o klasie .menu1 mają kolor czcionki czarny</dd>
+        <dt>.menu1 li:hover> a {background:#aaa;}</dt>
+        <dd>Przy najechaniu myszką na element li który znajduje się wewnątrz elementu o klasie .menu1, element a będący
+            bezpośrednim potomkiem elementu li zmieni kolor tła na szary</dd>
+        <dt>.menu1 > li {display:table-cell; padding:0; border:1px solid grey}</dt>
+        <dd>Elementy li będące bezpośrednimi potomkami elementu o klasie .menu1 mają być wyświetlane jako komórki
+            tabeli, margine wewnętrzny 0px, obramowanie ciągłe o grubości 1px o kolorze szarym</dd>
+        <dt>.menu1 >li >a {background:#678; color:white;margin:2px;}</dt>
+        <dd>Elementy a będące bezpośrednimi potomkami elementu li będącego bezpośrednim potomkiem elementu o klasie
+            .menu1 ma tło szare, kolor czcionki biały, margines zewnętrzny 2px</dd>
+        <dt>.menu1 ul {list-style-type:none} </dt>
+        <dd>Elementy ul wewnątrz elementu o klasie .menu1 nie mają wypunktowania</dd>
+        <dt>.menu1 ul {padding:0} </dt>
+        <dd>Elementy ul wewnątrz elementu o klasie .menu1 mają margines wewnętrzny 0</dd>
+        <dt>.menu1 li ul {position:absolute;border:1px solid grey;background:#eee}</dt>
+        <dd>Elementy ul wewnątrz li wewnątrz elementu o klasie .menu1 mają pozycje absolutną, obramowanie o grubości 1px
+            linia ciągła kolor szary, tło białe(#eee)</dd>
+        <dt>.menu1 li ul {display:none}</dt>
+        <dd>Elementy ul wewnątrz li wewnątrz elementu o klasie .menu1 są ukryte</dd>
+        <dt>.menu1 li:hover ul {display:block}</dt>
+        <dd>Przy najechaniu myszką na element li, który znajduje się wewnątrz elementu o klasie .menu1, element ul
+            wewnątrz elementu li wewnątrz klasy .menu1 wyświetla się jako blok</dd>
+        <dt>.menu1 >li {display:table-cell;padding:0;border:none}</dt>
+        <dd>Elementy li będące bezpośrednimi potomkami elementu o klasie .menu1 wyświetlają się jako komórka tabeli,
+            margines wewnętrzny 0, brak obramowania</dd>
+    </dl>
+</body>
+
+</html>
