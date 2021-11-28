@@ -33,12 +33,11 @@
     <button id="up" onclick="gora()">góra</button><br>
     <button id="down" onclick="dol()">dół</button>
 
-
     <script>
         function lewo(){
             let obrazek = document.getElementById('obraz');
             let lewopoz = window.getComputedStyle(obrazek).getPropertyValue("left");
-            document.getElementById('obraz').style.left = ''+parseFloat(lewopoz)-10+"px";
+            document.getElementById('obraz').style.left = ''+(parseFloat(lewopoz)-10)+"px";
         }
         function prawo(){
             let obrazek = document.getElementById('obraz');
