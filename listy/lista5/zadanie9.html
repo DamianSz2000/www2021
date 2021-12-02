@@ -1,0 +1,143 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #rys {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="rys" width="600" height="600"></canvas>
+    <button onclick="pokaz(obiekty)">Rysunek</button>
+    <button onclick="start()">Start</button>
+    <button onclick="stop()">Stop</button><br>
+    <input type="number" id="x" placeholder="x">
+    <input type="number" id="y" placeholder="y">
+    <input type="number" id="vx" placeholder="vx">
+    <input type="number" id="vy" placeholder="vy">
+    <select id="rysunekselect">
+        <option value=balwan>balwan</option>
+        <option>choinka</option>
+        <option>domek</option>
+    </select>
+    <button onclick="dodaj()">Dodaj</button>
+    <script>
+        var obiekty = [
+            { x: 300, y: 550, vx: 2, vy: -1, height: 1, rysuj: balwan },
+            { x: 450, y: 150, vx: -1, vy: 2, height: 1, rysuj: choinka },
+            { x: 50, y: 50, vx: 0, vy: 0, height: 2, rysuj: domek }
+        ]; // Te obiekty należy tak zmienić, by odtworzyć rysunek z zadania 7
+        var ctx = document.querySelector("canvas").getContext("2d");
+        function pokaz(obiekty) {
+            ctx.fillStyle = "blue";
+            ctx.fillRect(0, 0, 600, 600);
+            for (let o of obiekty)
+                o.rysuj(o.x, o.y, o.height);
+        }
+        function ruch() {
+            for (let o of obiekty) {
+                o.x += o.vx; if (o.x < 0 || o.x > 600) o.vx *= -1;
+                o.y += o.vy; if (o.y < 0 || o.y > 600) o.vy *= -1;
+            }
+            pokaz(obiekty);
+        }
+        function balwan(x, y, height) {
+            let ctx = rys.getContext("2d");
+            let r = 50 * height;
+            for (let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, 2 * Math.PI);
+                ctx.stroke();
+                ctx.fillStyle = "white";
+                ctx.fill();
+                y = y - (r + (r / 1.3));
+                r = r / 1.3;
+            }
+        }
+        function choinka(x, y, height) {
+            let ctx = rys.getContext("2d");
+            let width = 100;
+            let height2 = 50;
+            let tempx = x;
+            let tempy = y;
+            width = width * height;
+            height2 = height2 * height;
+            for (let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.lineTo(x + (width / 2), y);
+                ctx.moveTo(x, y);
+                ctx.lineTo(x - (width / 2), y);
+                ctx.lineTo(x, y - height2);
+                ctx.lineTo(x + (width / 2), y);
+                ctx.fillStyle = "green";
+                ctx.fill();
+                width = width / 1.3;
+                height2 = height2 / 1.3;
+                y = y - height2;
+            }
+            let woodw = 10 * height;
+            let woodh = 25 * 1.5;
+            ctx.beginPath();
+            ctx.moveTo(tempx, tempy);
+            ctx.lineTo(tempx - woodw, tempy);
+            ctx.lineTo(tempx - woodw, tempy + woodh);
+            ctx.lineTo(tempx + woodw, tempy + woodh);
+            ctx.lineTo(tempx + woodw, tempy);
+            ctx.fillStyle = "brown";
+            ctx.fill();
+        }
+        function domek(x, y, height) {
+            let ctx = rys.getContext("2d");
+            let width = 150 * height;
+            let height2 = 150 * height;
+            ctx.beginPath();
+            ctx.rect(x, y, width, height2);
+            ctx.fillStyle = "red";
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.rect(x + (width - 80), y + height2 - 100, 50, 100);
+            ctx.fillStyle = "brown";
+            ctx.fill();
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.rect(x + 50, y + 50, 50 * height, 50 * height);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.stroke();
+
+        }
+        function start(){
+            clock=setInterval(ruch,20)
+        }
+        function stop(){
+            clearInterval(clock)
+        }
+        function dodaj(){
+            let x1 = parseInt(x.value)
+            let y1 = parseInt(y.value)
+            let vx1 = parseInt(vx.value)
+            let vy1 = parseInt(vy.value)
+            let rysunek = rysunekselect.value
+            if(rysunek == "balwan"){
+                obiekty.push({x: x1, y: y1, vx: vx1, vy: vy1, height: 1, rysuj: balwan})
+            }
+            if(rysunek == "domek"){
+                obiekty.push({x: x1, y: y1, vx: vx1, vy: vy1, height: 2, rysuj: domek})
+            }
+            if(rysunek == "choinka"){
+                obiekty.push({x: x1, y: y1, vx: vx1, vy: vy1, height: 1, rysuj: choinka})
+            }
+            pokaz(obiekty);
+        }
+    </script>
+</body>
+
+</html>

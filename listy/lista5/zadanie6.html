@@ -50,6 +50,17 @@
     <button onclick="pokaz('matematyka')">Matematyka</button>
     <button onclick="wypisz(policz(student))">Wypisz ilu jest studentów na danym kierunku</button>
     <button onclick="wykres(policz(student))">Wykres ilości studentów</button>
+    <br>
+    <input type="text" id="imie" placeholder="Podaj imie">
+    <input type="text" id="nazwisko" placeholder="Podaj nazwisko">
+    <input type="number" id="wzrost" placeholder="Wzrost">
+    <select id="kierunekselect">
+        <option>fizyka</option>
+        <option>informatyka</option>
+        <option>matematyka</option>
+        <option>chemia</option>
+    </select>
+    <button onclick="dodaj()">Dodaj</button>
     <script>
         var student = [{ imie: "Ola", nazwisko: "Lis", kierunek: "fizyka", wzrost: 170 },
         { imie: "Ala", nazwisko: "Góral", kierunek: "informatyka", wzrost: 165 },
@@ -124,6 +135,13 @@
 
             t += '</div>';
             lista.innerHTML = t;
+        }
+        function dodaj(){
+            let name = imie.value;
+            let surname = nazwisko.value;
+            let height = parseInt(wzrost.value);
+            let kierunek1 = kierunekselect.value;
+            student.push({imie: name, nazwisko: surname, kierunek: kierunek1, wzrost: height})
         }
     </script>
 </body>
