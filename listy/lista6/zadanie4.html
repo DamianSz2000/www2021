@@ -1,0 +1,108 @@
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        table{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        td{
+            border: 1px solid black;
+            width: 40px;
+            height: 40px;
+        }
+        .zolte{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <table id="tabela">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <button id="dodaj">Dodaj pusty wiersz do tabeli</button>
+    <button id="dodaj2">Dodaj kolumne</button>
+    <button id="dodaj3">Dodaj komórkę do ostatniego wiersza</button>
+    <button id="dodaj4">Powiel ostatni wiersz</button>
+    <button id="dodaj5">Usuń pierwszy wiersz</button>
+    <button id="dodaj6">Usuń ostatni wiersz</button>
+    <button id="dodaj7">Usuń pierwszą kolumnę</button>
+    <button id="dodaj8">Usuń ostatnią kolumnę</button>
+    <button id="dodaj9">Dodaj do komórek zdarzenie click</button>
+    <button id="dodaj10">Dodaj do komórek zdarzenia mouseover, mouseout</button>
+
+    <script>
+        $("#dodaj").click(function (e) { 
+            e.preventDefault();
+            let ilosctd = $("#tabela tr:nth-last-child(1) td").length
+            let wiersze = ""
+            for(let i = 0; i < ilosctd; i++){
+                wiersze += "<td></td>"
+            }
+            $("#tabela").append("<tr>"+ wiersze + "</tr>");
+        });
+        $("#dodaj2").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr").append("<td></td>")
+        });
+        $("#dodaj3").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr:nth-last-child(1)").append("<td></td>")
+        });
+        $("#dodaj4").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr:nth-last-child(1)").clone().appendTo("#tabela")
+        });
+        $("#dodaj5").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr:nth-child(1)").remove()
+        });
+        $("#dodaj6").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr:nth-last-child(1)").remove()
+        });
+        $("#dodaj7").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr td:nth-child(1)").remove()
+        });
+        $("#dodaj8").click(function (e) { 
+            e.preventDefault();
+            $("#tabela tr td:nth-last-child(1)").remove()
+        });
+        $("#dodaj9").click(function (e) { 
+            e.preventDefault();
+            $("td").on("click", function () {
+                $(this).hide()
+            });
+        });
+        $("#dodaj10").click(function (e) { 
+            e.preventDefault();
+            $("td").on("mouseover", function () {
+                $(this).addClass("zolte")
+            });
+            $("td").on("mouseout", function () {
+                $(this).removeClass("zolte")
+            });
+        });
+    </script>
+</body>
+</html>

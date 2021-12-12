@@ -1,0 +1,65 @@
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        svg {
+          margin-left: 10%;
+        }
+      </style>
+</head>
+
+<body>
+    <svg width="1000" height="1000">
+        <defs>
+            <linearGradient id="gradient" gradientTransform="rotate(90)">
+                <stop offset="5%" stop-color="gold" />
+                <stop offset="95%" stop-color="red" />
+            </linearGradient>
+            <linearGradient id="gradient2" gradientTransform="rotate(90)">
+                <stop offset="5%" stop-color="blue" />
+                <stop offset="95%" stop-color="yellow" />
+            </linearGradient>
+            <radialGradient id="gradient3">
+                <stop offset="10%" stop-color="white" />
+                <stop offset="95%" stop-color="black" />
+            </radialGradient>
+            <pattern id="star" viewBox="0,0,10,10" width="10%" height="10%">
+                <polygon points="0,0 2,5 0,10 5,8 10,10 8,5 10,0 5,2" />
+            </pattern>
+        </defs>
+
+        <text>
+            <textPath href="#kwadrat">KwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadratKwadrat</textPath>
+            <textPath href="#trojkat">TrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkatTrojkat</textPath>
+            <textPath href="#szesciokat">SzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokatSzesciokat</textPath>
+            <textPath href="#kolo">KołoKołoKołoKołoKołoKołoKołoKołoKołoKoło</textPath>
+            <textPath href="#elipsa">ElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsaElipsa</textPath>
+            
+        </text>
+
+
+
+        <!-- kwadrat -->
+        <path id="kwadrat" d="M 50 550 m -20 -20  h 240 v 240 h -240 v -240" fill="none"/>
+        <path d="M 50 550 h 200 v 200 h -200 v -200" fill="url('#gradient2')" style="stroke-width:3;stroke:rgb(0,0,0)" stroke-dasharray="4 1" />
+        <!-- trojkat -->
+        <path id="trojkat" d="M 550 50 L 390 410 L 710 410 Z" fill="none"/>
+        <path d="M 550 60 L 400 400 L 700 400 Z" style="fill:blue" stroke="black" stroke-width="3" stroke-dasharray="4 1 2 3" />
+        <!-- szesciokat -->
+        <path id="szesciokat" d="M 330 150 L 255 290 L 85 290 L 10 150 L 85 10 L 255 10 Z" fill="none"/>
+        <path d="M 320 150 L 245 280 L 95 280 L 20 150 L 95 20 L 245 20 Z" stroke="black" stroke-width="3" fill="url('#gradient')" stroke-dasharray="4" />
+        <!-- kolo -->
+        <path id="kolo" d="M 450 650 a 50 50 0 1 0 100 0 a 50 50 0 1 0 -100 0" fill="none"/>
+        <path d="M 460 650 a 40 40 0 1 0 80 0 a 40 40 0 1 0 -80 0" stroke="black" fill="url('#gradient3')" stroke-width="3" fill="red" stroke-dasharray="4 1 2" />
+        <!-- elipsa -->
+        <path id="elipsa" d="M 740 660 a 110 60 0 1 0 220 0 a 110 60 0 1 0 -220 0" fill="none"/>
+        <path d="M 750 660 a 100 50 0 1 0 200 0 a 100 50 0 1 0 -200 0" style="stroke:purple;stroke-width:2" fill="url('#star')" stroke-dasharray="4 1 2 3" />
+        
+    </svg>
+</body>
+
+</html>

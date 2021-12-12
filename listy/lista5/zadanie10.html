@@ -142,21 +142,22 @@
             }
             pokaz(obiekty);
             counter++;
-            document.getElementById("usuwanie").innerHTML="";
-            usuwanie(obiekty);
-        }
-        var ile;
-        usuwanie(obiekty);
-        function usuwanie(obiekty) {
+            document.getElementById("usuwanie").innerHTML = "";
             for (i in obiekty) {
                 document.getElementById("usuwanie").innerHTML += "<button id=" + counter + " onclick='usun(" + i + ")'>Usuń " + i + "</button>"
                 counter++
             }
         }
+        for (i in obiekty) {
+            document.getElementById("usuwanie").innerHTML += "<button id=" + counter + " onclick='usun(" + i + ")'>Usuń " + i + "</button>"
+            counter++
+        }
+        var ile;
+
         function usun(i) {
             ile = counter - 1;
-            var rysunek = document.getElementById(ile);
-            rysunek.remove();
+            var przycisk = document.getElementById(ile);
+            przycisk.remove();
             counter--;
             obiekty.splice(i, 1);
         }

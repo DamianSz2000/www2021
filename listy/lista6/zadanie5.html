@@ -1,0 +1,98 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        #ramka {
+            width: 600px;
+            height: 600px;
+            border: 1px solid black;
+            background-color: green;
+        }
+
+        .cel {
+            background: red;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="ramka">
+        <div class="cel"></div>
+        <div class="cel"></div>
+        <div class="cel"></div>
+        <div class="cel"></div>
+        <div class="cel"></div>
+    </div>
+    <p id="punkty">Punkty: 0</p>
+    <p id="czasgierki">Pozostaly czas: 60</p>
+    <button id="1">Poziom trudności 1</button>
+    <button id="2">Poziom trudności 2</button>
+    <button id="3">Poziom trudności 3</button>
+    <script>
+        var punkty = 0
+        var czas = 0
+        $(document).ready(function () {
+            let cele = $(".cel")
+            for(cel of cele){
+                cel.x = Math.random()*550
+                cel.y = Math.random()*550
+                cel.style.left = cel.x+"px"
+                cel.style.top = cel.y+"px"
+                cel.onmousedown = znika
+            }
+        });
+        $("#1").click(function (e) { 
+            e.preventDefault();
+            timer = setInterval(znikanie, 3000)
+            timer2 = setInterval(czasgry, 1000)
+            timer3 = setInterval(dodaj, 5000)
+        });
+        $("#2").click(function (e) { 
+            e.preventDefault();
+            timer = setInterval(znikanie, 1000)
+            timer2 = setInterval(czasgry, 1000)
+            timer3 = setInterval(dodaj, 1000)
+        });
+        $("#3").click(function (e) { 
+            e.preventDefault();
+            timer = setInterval(znikanie, 500)
+            timer2 = setInterval(czasgry, 1000)
+            timer3 = setInterval(dodaj, 500)
+        });
+        function dodaj(){
+            $("#ramka").append("<div class='cel' style='left:" + Math.random()*550 + ";top:" + Math.random()*550 +  " '></div>");
+            let cele = $(".cel")
+            for(cel of cele){
+                cel.onmousedown = znika
+            }
+        }
+        function znikanie(){
+            $("#ramka div:nth-child(1)").remove();
+        }
+        function czasgry(){
+            czas += 1
+            $("#czasgierki").html("Pozostaly czas: " + (60 - czas));
+            if(czas == 60){
+                clearInterval(timer)
+                clearInterval(timer2)
+                clearInterval(timer3)
+            }
+        }
+        function znika(){
+            this.style.display = "none"
+            punkty += 1
+            $("#punkty").html("Punkty: " + punkty)
+        }
+    </script>
+</body>
+
+</html>
