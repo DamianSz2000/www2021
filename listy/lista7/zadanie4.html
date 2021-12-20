@@ -45,10 +45,10 @@
     }
     $("p").draggable({
         helper: "clone",
-        start: function () {
+        start: function (e, ui) {
             $(this).hide()
+            $(ui.helper).css("background", "red")
             stary = parseInt($(this).parent().attr("id"))
-            
         },
         stop: function () {
             $(this).show()
