@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <style>
+         td {height:50px;width:50px;border:1px solid grey;padding:10px}
+         table {margin:auto;border-collapse:collapse;}
+         p {height:40px;width:40px;background:black;margin:0;border-radius:20px}
+    </style>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+
+<body>
+    <h1>Samotnik</h1>
+    <div id="wynik"></div>
+<table>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+<tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th></th><td></td><td></td><td></td><td>x</td><td></td><td></td><td></td></tr>
+<tr><th></th><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+<tr><th></th><th></th><th></th><td></td><td></td><td></td><th></th><th></th></tr>
+</table>
+<br>
+<button onclick="location=location">Nowa Gra</button>
+
+<script>
+    var ile = 32
+    let all=document.querySelectorAll('td,th');
+    let tds=document.querySelectorAll('td');
+    let i = 0
+    for(let x of all){
+        $(x).attr("id", i++);
+    }
+    for(let x of tds)   
+    {     
+        if(x.innerHTML=='x'){       
+            x.innerHTML=''
+        }
+        else{
+            x.innerHTML="<p></p>"
+        }
+    }
+    $("p").draggable({
+        helper: "clone",
+        start: function () {
+            $(this).hide()
+            stary = parseInt($(this).parent().attr("id"))
+            
+        },
+        stop: function () {
+            $(this).show()
+        
+        }
+    })
+    $("td").droppable({
+        accept: function(a){
+            return $(this).html()==''
+        },
+        drop: function( event, ui ) { 
+            nowy = parseInt($(this).attr("id"))
+            console.log(stary)
+            console.log(nowy)
+            switch(Math.abs(stary-nowy))
+            { 
+                case 2:case 16:                   
+                    middle= (stary+nowy)/2
+                    if(all[middle].innerHTML!='')
+                    {
+                        ui.draggable.appendTo(this)      
+                        all[middle].innerHTML='';
+                        ile--
+                        if(ile==1){
+                            $("#wynik").html("<h1>WYGRALES!!!</h1>");
+                        }
+                    }
+            }
+
+        }
+    })
+    
+</script>
+
+</body>
+</html>

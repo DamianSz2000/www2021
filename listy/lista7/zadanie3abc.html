@@ -1,0 +1,379 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <style>
+        #puzzle{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #puzzle td{
+            height: 80px;
+            width: 80px;
+        }
+        #rozwiazanie{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        #rozwiazanie td{
+            height: 80px;
+            width: 80px;
+            padding: 0px;
+        }
+    </style>
+</head>
+<body>
+    <button id="4">Poziom trudnosci 4x4</button>
+    <button id="5">Poziom trudnosci 5x5</button>
+    <button id="6">Poziom trudnosci 6x6</button>
+    <button id="7">Poziom trudnosci 7x7</button>
+    <br>
+    <button onclick="wybor = 0">Zdjecie 1</button>
+    <button onclick="wybor = 1">Zdjecie 2</button>
+    <button onclick="wybor = 2">Zdjecie 3</button>
+    <button onclick="wybor = 3">Zdjecie 4</button>
+    <button onclick="wybor = 4">Zdjecie 5</button>
+    <button onclick="wybor = 5">Zdjecie 6</button>
+    <button onclick="wybor = 6">Zdjecie 7</button>
+    <button onclick="wybor = 7">Zdjecie 8</button>
+    <button onclick="wybor = 8">Zdjecie 9</button>
+    <button onclick="wybor = 9">Zdjecie 10</button>
+    <br>
+    <div id="wyniki"></div>
+    <table id="puzzle">
+
+    </table>
+    <br><br>
+    <table id="rozwiazanie">
+
+    </table>
+
+
+
+
+
+
+    <script>
+        var zdjecia = ["https://www.tapeciarnia.pl/tapety/normalne/58747_swiateczny_krajobraz.jpg","https://s3.eu-central-1.amazonaws.com/pressland-cms/cache/article_show_cover/p2/24215635-dekoracje-swiateczne.jpeg","https://phavi.umcs.pl/ph/r,1024,800/agicon/c/2017/1218/49310655a37a0673242c.jpg","https://d-art.ppstatic.pl/kadry/art-art/5f/92/1906242_289069439_full.jpg","https://swidnica24.pl/wp-content/uploads/2018/11/zdj%C4%99cie-g%C5%82%C3%B3wne.jpg","https://treehouse.co/uploads/ozdoby-swiateczne.jpg", "https://nphoto.com/sites/default/files/2021-04/mini-sesja-swiateczna.jpg","https://www.pieknowdomu.pl/media/catalog/product/cache/1/image/1000x1000/17f82f742ffe127f42dca9de82fb58b1/d/e/dekoracje-swiateczne-ozdoby-do-przyklejenia-renifery-na-boze-narodzenie-altom-design-drewniane-z-czerwonym-porozem-20-sztuk_1706001506pwd.jpg","https://www.przegladpiaseczynski.pl/wp-content/uploads/2020/12/christmas-5705046_1920.jpg","https://moi-mili.pl/wp-content/uploads/2020/12/ozdoby-swiateczne-_-L-1-2-1422x800.jpg"]
+        var wybor = 0
+        function shuffle(array) {
+            let currentIndex = array.length,  randomIndex;
+            while (currentIndex != 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex--;
+                [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+            }
+            return array;
+        }
+        $("#4").click(function (e) { 
+            e.preventDefault();
+            $("#wyniki").html("")
+            $("#puzzle").html("");
+            let movex = 0
+            let movey = 0
+            for(let i = 0; i < 4; i++){
+                $("#puzzle").append("<tr></tr>");
+                for(let j = 0; j < 4; j++){
+                    $("#puzzle tr:nth-last-child(1)").append("<td></td>");
+                    movex -= 80
+                }
+                movex = 0
+                movey -= 80
+            }
+            $("#rozwiazanie").html("");
+            for(let i = 0; i < 4; i++){
+                $("#rozwiazanie").append("<tr></tr>");
+                for(let j = 0; j < 4; j++){
+                    $("#rozwiazanie tr:nth-last-child(1)").append("<td></td>");
+                }   
+            }
+            let tds = $("#puzzle tr td")
+            tds = shuffle(tds)
+            let counter = 0
+            movex = 0
+            movey = 0
+            for(let i = 0; i < 4; i++){
+                for(let j = 0; j < 4; j++){
+                    $(tds[counter]).css("background-size", "320px 320px")
+                    $(tds[counter]).css("background-position", movex+"px "+movey+"px")
+                    $(tds[counter]).css("background-image", "url("+zdjecia[wybor]+")")
+                    movex -= 80
+                    counter++
+                }
+                movex = 0
+                movey -= 80
+            }
+            $(function() {
+                $("td").draggable({
+                    helper: "clone",
+                    start: function () {$(this).hide();},
+                    stop: function () {$(this).show();}
+            });
+    
+                $("#rozwiazanie td").droppable({
+                    accept:function(a){ return $(this).html()=='';},
+                    drop: function( event, ui ) { 
+                        ui.draggable.appendTo( this )
+                        let tds = $("#rozwiazanie td td")
+                        let counter = 0
+                        let dobrze = 0
+                        let movex = 0
+                        let movey = 0
+                        for(let i = 0; i < 4; i++){
+                            for(let j = 0; j < 4; j++){
+                                console.log($(tds[counter]).css("background-position"))
+                                console.log(movex+"px "+movey+"px")
+                                if($(tds[counter]).css("background-position")==movex+"px "+movey+"px"){
+                                    dobrze++
+                                    console.log(dobrze)
+                                }
+                                counter++
+                                movex-=80
+                            }
+                            movex=0
+                            movey-=80
+                        }
+                        if(dobrze==tds.length){
+                            $("#wyniki").html("<h1 style='color:red'>Udalo ci sie poprawnie ulozyc obrazek! Sprobuj innych poziomow trudnosci i obrazkow.</h1>");
+                        }
+                    }
+                });
+            });
+        });
+        $("#5").click(function (e) { 
+            e.preventDefault();
+            $("#wyniki").html("")
+            $("#puzzle").html("");
+            let movex = 0
+            let movey = 0
+            for(let i = 0; i < 5; i++){
+                $("#puzzle").append("<tr></tr>");
+                for(let j = 0; j < 5; j++){
+                    $("#puzzle tr:nth-last-child(1)").append("<td style='background-position: "+movex+"px "+movey+"px; background-size: 400px 400px'></td>");
+                    movex -= 80
+                }
+                movex = 0
+                movey -= 80
+            }
+            $("#rozwiazanie").html("");
+            for(let i = 0; i < 5; i++){
+                $("#rozwiazanie").append("<tr></tr>");
+                for(let j = 0; j < 5; j++){
+                    $("#rozwiazanie tr:nth-last-child(1)").append("<td></td>");
+                }   
+            }
+            let tds = $("#puzzle tr td")
+            tds = shuffle(tds)
+            let counter = 0
+            movex = 0
+            movey = 0
+            for(let i = 0; i < 5; i++){
+                for(let j = 0; j < 5; j++){
+                    $(tds[counter]).css("background-size", "400px 400px")
+                    $(tds[counter]).css("background-position", movex+"px "+movey+"px")
+                    $(tds[counter]).css("background-image", "url("+zdjecia[wybor]+")")
+                    movex -= 80
+                    counter++
+                }
+                movex = 0
+                movey -= 80
+            }
+            $(function() {
+                $("td").draggable({
+                    helper: "clone",
+                    start: function () {$(this).hide();},
+                    stop: function () {$(this).show();}
+            });
+    
+                $("#rozwiazanie td").droppable({
+                    accept:function(a){ return $(this).html()=='';},
+                    drop: function( event, ui ) { 
+                        ui.draggable.appendTo( this ) 
+                        let tds = $("#rozwiazanie td td")
+                        let counter = 0
+                        let dobrze = 0
+                        let movex = 0
+                        let movey = 0
+                        for(let i = 0; i < 5; i++){
+                            for(let j = 0; j < 5; j++){
+                                console.log($(tds[counter]).css("background-position"))
+                                console.log(movex+"px "+movey+"px")
+                                if($(tds[counter]).css("background-position")==movex+"px "+movey+"px"){
+                                    dobrze++
+                                    console.log(dobrze)
+                                }
+                                counter++
+                                movex-=80
+                            }
+                            movex=0
+                            movey-=80
+                        }
+                        if(dobrze==tds.length){
+                            $("#wyniki").html("<h1 style='color:red'>Udalo ci sie poprawnie ulozyc obrazek! Sprobuj innych poziomow trudnosci i obrazkow.</h1>");
+                        }
+                    }
+                });
+            });
+        });
+        $("#6").click(function (e) { 
+            e.preventDefault();
+            $("#wyniki").html("")
+            $("#puzzle").html("");
+            let movex = 0
+            let movey = 0
+            for(let i = 0; i < 6; i++){
+                $("#puzzle").append("<tr></tr>");
+                for(let j = 0; j < 6; j++){
+                    $("#puzzle tr:nth-last-child(1)").append("<td style='background-position: "+movex+"px "+movey+"px; background-size: 480px 480px'></td>");
+                    movex -= 80
+                }
+                movex = 0
+                movey -= 80
+            }
+            $("#rozwiazanie").html("");
+            for(let i = 0; i < 6; i++){
+                $("#rozwiazanie").append("<tr></tr>");
+                for(let j = 0; j < 6; j++){
+                    $("#rozwiazanie tr:nth-last-child(1)").append("<td></td>");
+                }   
+            }
+            let tds = $("#puzzle tr td")
+            tds = shuffle(tds)
+            let counter = 0
+            movex = 0
+            movey = 0
+            for(let i = 0; i < 6; i++){
+                for(let j = 0; j < 6; j++){
+                    $(tds[counter]).css("background-size", "480px 480px")
+                    $(tds[counter]).css("background-position", movex+"px "+movey+"px")
+                    $(tds[counter]).css("background-image", "url("+zdjecia[wybor]+")")
+                    movex -= 80
+                    counter++
+                }
+                movex = 0
+                movey -= 80
+            }
+            $(function() {
+                $("td").draggable({
+                    helper: "clone",
+                    start: function () {$(this).hide();},
+                    stop: function () {$(this).show();}
+            });
+    
+                $("#rozwiazanie td").droppable({
+                    accept:function(a){ return $(this).html()=='';},
+                    drop: function( event, ui ) { 
+                        ui.draggable.appendTo( this )
+                        let tds = $("#rozwiazanie td td")
+                        let counter = 0
+                        let dobrze = 0
+                        let movex = 0
+                        let movey = 0
+                        for(let i = 0; i < 6; i++){
+                            for(let j = 0; j < 6; j++){
+                                console.log($(tds[counter]).css("background-position"))
+                                console.log(movex+"px "+movey+"px")
+                                if($(tds[counter]).css("background-position")==movex+"px "+movey+"px"){
+                                    dobrze++
+                                    console.log(dobrze)
+                                }
+                                counter++
+                                movex-=80
+                            }
+                            movex=0
+                            movey-=80
+                        }
+                        if(dobrze==tds.length){
+                            $("#wyniki").html("<h1 style='color:red'>Udalo ci sie poprawnie ulozyc obrazek! Sprobuj innych poziomow trudnosci i obrazkow.</h1>");
+                        }
+                    
+                    }
+                });
+            });
+        });
+        $("#7").click(function (e) { 
+            e.preventDefault();
+            $("#wyniki").html("")
+            $("#puzzle").html("");
+            let movex = 0
+            let movey = 0
+            for(let i = 0; i < 7; i++){
+                $("#puzzle").append("<tr></tr>");
+                for(let j = 0; j < 7; j++){
+                    $("#puzzle tr:nth-last-child(1)").append("<td style='background-position: "+movex+"px "+movey+"px; background-size: 560px 560px'></td>");
+                    movex -= 80
+                }
+                movex = 0
+                movey -= 80
+            }
+            $("#rozwiazanie").html("");
+            for(let i = 0; i < 7; i++){
+                $("#rozwiazanie").append("<tr></tr>");
+                for(let j = 0; j < 7; j++){
+                    $("#rozwiazanie tr:nth-last-child(1)").append("<td></td>");
+                }   
+            }
+            let tds = $("#puzzle tr td")
+            tds = shuffle(tds)
+            let counter = 0
+            movex = 0
+            movey = 0
+            for(let i = 0; i < 7; i++){
+                for(let j = 0; j < 7; j++){
+                    $(tds[counter]).css("background-size", "560px 560px")
+                    $(tds[counter]).css("background-position", movex+"px "+movey+"px")
+                    $(tds[counter]).css("background-image", "url("+zdjecia[wybor]+")")
+                    movex -= 80
+                    counter++
+                }
+                movex = 0
+                movey -= 80
+            }
+            $(function() {
+                $("td").draggable({
+                    helper: "clone",
+                    start: function () {$(this).hide();},
+                    stop: function () {$(this).show();}
+            });
+    
+                $("#rozwiazanie td").droppable({
+                    accept:function(a){ return $(this).html()=='';},
+                    drop: function( event, ui ) { 
+                        ui.draggable.appendTo( this )
+                        let tds = $("#rozwiazanie td td")
+                        let counter = 0
+                        let dobrze = 0
+                        let movex = 0
+                        let movey = 0
+                        for(let i = 0; i < 7; i++){
+                            for(let j = 0; j < 7; j++){
+                                console.log($(tds[counter]).css("background-position"))
+                                console.log(movex+"px "+movey+"px")
+                                if($(tds[counter]).css("background-position")==movex+"px "+movey+"px"){
+                                    dobrze++
+                                    console.log(dobrze)
+                                }
+                                counter++
+                                movex-=80
+                            }
+                            movex=0
+                            movey-=80
+                        }
+                        if(dobrze==tds.length){
+                            $("#wyniki").html("<h1 style='color:red'>Udalo ci sie poprawnie ulozyc obrazek! Sprobuj innych poziomow trudnosci i obrazkow.</h1>");
+                        }
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+</body>
+</html>
